@@ -26,12 +26,14 @@ SECRET_KEY = 'django-insecure-z-=i9a!wlc(47=kj-fxva2i%q+)a^s&p44qp4y67ue4xxpmp1k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'https://zoomglam-backend-production.herokuapp.com/', 'https://zoomglam-frontend-production.herokuapp.com/']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    ''
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
