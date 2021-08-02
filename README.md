@@ -20,7 +20,7 @@ Check out [API LIVE DEMO](https://zoomglam-backend-production.herokuapp.com/) he
 1. Git Clone
 
 ```
-git clone git@github.com:Tech-i-s/techis-wd-forum-django-react.git
+git clone https://github.com/deekshith-hari/zoomglam.git
 ```
 
 2. Backend setting
