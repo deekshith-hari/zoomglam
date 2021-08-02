@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-z-=i9a!wlc(47=kj-fxva2i%q+)a^s&p44qp4y67ue4xxpmp1k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://127.0.0.1','https://zoomglam-backend-production.herokuapp.com/']
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'https://zoomglam-backend-production.herokuapp.com/', 'https://zoomglam-frontend-production.herokuapp.com/']
 
 # Application definition
