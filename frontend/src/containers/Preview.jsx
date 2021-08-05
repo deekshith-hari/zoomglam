@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import ImgImg1 from "../assets/img/img1.png";
 import ImgImg2 from "../assets/img/img2.png";
 import ImgImg3 from "../assets/img/img3.png";
@@ -8,19 +7,13 @@ import ImgImg5 from "../assets/img/img5.png";
 import ImgImg6 from "../assets/img/img6.png";
 import ImgBackground from "../assets/img/section1-bg.png";
 import ImgSearch from "../assets/img/icon-search.svg";
+import ImgCloseButton from "../assets/img/close-button.svg";
+import ImgFavButton from "../assets/img/fav-button.svg";
+import ImgPreview from "../assets/img/preview-main.png";
+import ImageWomam from "../assets/img/woman110.png";
+import ImgDownload from "../assets/img/preview-download.png";
 
-import { fetchPosts } from "../reducks/posts/operations";
-import { getPosts } from "../reducks/posts/selectors";
-
-const Home = () => {
-  const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
-  const posts = getPosts(selector);
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
-
+export default function Preview() {
   return (
     <div>
       <section class="section1">
@@ -83,8 +76,35 @@ const Home = () => {
           <input type="submit" value="Show more" />
         </div>
       </section>
+      <section class="preview">
+        <div class="preview-inner">
+          <a href="" class="close-button">
+            <img src={ImgCloseButton} alt="" />
+          </a>
+
+          <div class="main-image">
+            <img class="fav-btn" src={ImgFavButton} />
+            <img class="preview-img" src={ImgPreview} />
+            <div class="image-description">
+              <p class="tag-title">office #1</p>
+              <p class="description">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta,
+                sunt libero, officiis sit earum Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Pariatur ab quod ipsum dolor!quis
+                eos ad voluptates impedit tempora.
+              </p>
+            </div>
+          </div>
+
+          <div class="download-preview">
+            <p>Preview</p>
+            <img class="checker" src={ImageWomam} alt="" />
+            <img class="img-preview" src={ImgDownload} />
+
+            <input type="submit" value="Download" />
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
-export default Home;
+}
