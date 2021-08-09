@@ -3,12 +3,18 @@ import { fetchImagesAction, fetchImageAction } from "./actions";
 
 const api = new API();
 
-export const fetchImages = () => {
-  return async (dispatch) => {
+export const fetchImages = (page) => {
+  return async (dispatch, getState) => {
     return api
-      .getImages()
+      .getImages(page)
       .then((images) => {
-        dispatch(fetchImagesAction(images));
+        const prevImages = getState().images.list;
+        const nextPosts = [...prevImages, ...images["results"]];
+        let hasNext = false;
+        if (images["next"]) {
+          hasNext = true;
+        }
+        dispatch(fetchImagesAction(nextPosts, hasNext));
       })
       .catch((error) => {
         alert("Failed to connect API: /images/");

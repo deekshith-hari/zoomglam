@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchImages } from "../reducks/images/operations";
-import { getImages } from "../reducks/images/selectors";
+import { getImages, getHasNext } from "../reducks/images/selectors";
 
 import ImgBackground from "../assets/img/section1-bg.png";
 import ImgSearch from "../assets/img/icon-search.svg";
@@ -12,16 +12,24 @@ const Home = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const images = getImages(selector);
+  const hasNext = getHasNext(selector);
+  const [page, setPage] = useState(1);
   const [showPreview, setShowPreview] = useState(false);
   const [selectedImageId, setSelectedImageId] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchImages());
+    dispatch(fetchImages(page));
+    setPage(page + 1);
   }, []);
 
   const clickImage = (imageId) => {
     setSelectedImageId(imageId);
     setShowPreview(true);
+  };
+
+  const clickShowMore = () => {
+    dispatch(fetchImages(page));
+    setPage(page + 1);
   };
 
   return (
@@ -57,9 +65,11 @@ const Home = () => {
             </li>
           ))}
         </ul>
-        <div class="show-more">
-          <input type="submit" value="Show more" />
-        </div>
+        {hasNext && (
+          <div class="show-more">
+            <input type="submit" value="Show more" onClick={clickShowMore} />
+          </div>
+        )}
       </section>
     </div>
   );

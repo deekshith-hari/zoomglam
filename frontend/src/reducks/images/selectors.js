@@ -6,3 +6,8 @@ export const getImages = createSelector(
   [imagesSelector],
   (state) => state.list
 );
+
+export const getHasNext = createSelector(
+  [imagesSelector],
+  (state) => state.hasNext
+);
