@@ -4,9 +4,6 @@ from .serializers import ImageSerializer, TagSerializer
 from .models import Image, Tag
 from django_filters.rest_framework import DjangoFilterBackend
 
-
-
-
 class ImageList(generics.ListAPIView):
     # Get all posts, limit = 20
     queryset = Image.objects.order_by('-created_at')

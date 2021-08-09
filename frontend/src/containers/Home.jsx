@@ -1,28 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ImgImg1 from "../assets/img/img1.png";
-import ImgImg2 from "../assets/img/img2.png";
-import ImgImg3 from "../assets/img/img3.png";
-import ImgImg4 from "../assets/img/img4.png";
-import ImgImg5 from "../assets/img/img5.png";
-import ImgImg6 from "../assets/img/img6.png";
+
+import { fetchImages } from "../reducks/images/operations";
+import { getImages } from "../reducks/images/selectors";
+
 import ImgBackground from "../assets/img/section1-bg.png";
 import ImgSearch from "../assets/img/icon-search.svg";
-
-import { fetchPosts } from "../reducks/posts/operations";
-import { getPosts } from "../reducks/posts/selectors";
+import Preview from "../components/Common/Preview";
 
 const Home = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
-  const posts = getPosts(selector);
+  const images = getImages(selector);
+  const [showPreview, setShowPreview] = useState(false);
+  const [selectedImageId, setSelectedImageId] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchImages());
   }, []);
+
+  const clickImage = (imageId) => {
+    setSelectedImageId(imageId);
+    setShowPreview(true);
+  };
 
   return (
     <div>
+      {showPreview && (
+        <Preview
+          setShowPreview={setShowPreview}
+          selectedImageId={selectedImageId}
+        />
+      )}
       <section class="section1">
         <div class="p1">
           <p>Find your zoom</p>
@@ -42,42 +51,11 @@ const Home = () => {
 
       <section class="section2">
         <ul class="image-list">
-          <li>
-            <img src={ImgImg1} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg2} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg3} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg4} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg5} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg6} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg1} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg2} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg3} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg4} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg5} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg6} alt="" />
-          </li>
+          {images.map((image) => (
+            <li key={image.id} onClick={() => clickImage(image.id)}>
+              <img src={image.image} alt="" />
+            </li>
+          ))}
         </ul>
         <div class="show-more">
           <input type="submit" value="Show more" />

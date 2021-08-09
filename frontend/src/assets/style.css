@@ -335,6 +335,7 @@ Preview
 
 .preview .preview-inner .close-button img {
   width: 90px;
+  cursor: pointer;
 }
 
 .preview .preview-inner .main-image .image-description {
