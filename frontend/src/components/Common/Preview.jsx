@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import ImgCloseButton from "../../assets/img/close-button.svg";
 import ImgFavButton from "../../assets/img/fav-button.svg";
-import ImgPreview from "../../assets/img/preview-main.png";
 import ImageWomam from "../../assets/img/woman110.png";
-import ImgDownload from "../../assets/img/preview-download.png";
 import API from "../../API";
 
 const api = new API();

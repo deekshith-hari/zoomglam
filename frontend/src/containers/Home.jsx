@@ -49,8 +49,10 @@ const Home = () => {
         </div>
         <div class="search-box">
           <div class="search-box-inner">
-            <input type="text" placeholder="Type here.." />
-            <img src={ImgSearch} alt="" />
+            <form action="/search" method="get">
+              <input type="text" name="search" placeholder="Type here.." />
+              <img src={ImgSearch} alt="" />
+            </form>
           </div>
         </div>
         <img src={ImgBackground} class="section1-bg" />

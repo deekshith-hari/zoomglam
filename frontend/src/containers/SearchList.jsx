@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import ImgImg1 from "../assets/img/img1.png";
-import ImgImg2 from "../assets/img/img2.png";
-import ImgImg3 from "../assets/img/img3.png";
-import ImgImg4 from "../assets/img/img4.png";
-import ImgImg5 from "../assets/img/img5.png";
-import ImgImg6 from "../assets/img/img6.png";
 import ImgSearch from "../assets/img/icon-search.svg";
 
+import { fetchImages } from "../reducks/images/operations";
+import { getImages } from "../reducks/images/selectors";
+
+import queryString from "query-string";
+
 export default function SearchList() {
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const parsed = queryString.parse(window.location.search);
+  const images = getImages(selector);
+  const [search, setSearch] = useState(null);
+  const [page, setPage] = useState(1);
+  console.log(parsed);
+
+  useEffect(() => {
+    if (parsed.page != undefined) {
+      setPage(parsed.page);
+    }
+    if (parsed.search != undefined) {
+      setSearch(parsed.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchImages(page, search));
+  }, [page, search]);
+
   return (
     <div>
       <section class="section2">
@@ -20,48 +41,14 @@ export default function SearchList() {
         </div>
         <div class="search-result">
           <p>Search</p>
-          <p>
-            {" "}
-            <b>"Office Space"</b>
-          </p>
+          <p></p>
         </div>
         <ul class="image-list">
-          <li>
-            <img src={ImgImg1} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg2} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg3} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg4} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg5} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg6} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg1} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg2} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg3} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg4} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg5} alt="" />
-          </li>
-          <li>
-            <img src={ImgImg6} alt="" />
-          </li>
+          {images.map((image) => (
+            <li key={image.id}>
+              <img src={image.image} alt="" />
+            </li>
+          ))}
         </ul>
         <div class="show-more">
           <input type="submit" value="Show more" />
