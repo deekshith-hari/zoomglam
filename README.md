@@ -34,7 +34,7 @@ pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-# Open http://127.0.0.1:8000/posts/
+# Open http://127.0.0.1:8000/images/
 ```
 
 3. Frontend setting
