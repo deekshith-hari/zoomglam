@@ -3,6 +3,9 @@ const initialState = {
     list: [],
     hasNext: true,
   },
+  tags: {
+    list: [],
+  },
 };
 
 export default initialState;

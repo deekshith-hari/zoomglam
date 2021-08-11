@@ -8,12 +8,14 @@ import { connectRouter, routerMiddleware } from "connected-react-router";
 import thunk from "redux-thunk";
 
 import { ImagesReducer } from "../images/reducers";
+import { TagsReducer } from "../tags/reducers";
 
 export default function createStore(history) {
   return reduxCreateStore(
     combineReducers({
       router: connectRouter(history),
       images: ImagesReducer,
+      tags: TagsReducer,
     }),
     compose(
       applyMiddleware(routerMiddleware(history), thunk)
