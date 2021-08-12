@@ -25,7 +25,9 @@ export default function Header() {
           {tags["results"] &&
             tags["results"].map((tag) => (
               <li key={tag.id}>
-                <input type="submit" value={tag.name} class="raise" />
+                <a href="/search">
+                  <input type="submit" value={tag.name} class="raise" />
+                </a>
               </li>
             ))}
         </ul>
