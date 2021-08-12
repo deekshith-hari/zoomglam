@@ -144,6 +144,7 @@ Section1 Main Visual
   width: 96%;
   top: 10%;
   font-size: 20px;
+  outline: none;
 }
 
 .section1 .search-box .search-box-inner img {
