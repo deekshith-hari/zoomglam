@@ -6,6 +6,9 @@ const initialState = {
   tags: {
     list: [],
   },
+  favourites: {
+    list: [],
+  },
 };
 
 export default initialState;

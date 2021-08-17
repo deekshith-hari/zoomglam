@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { addFavourite } from "../../reducks/favourites/operations";
 
 import ImgCloseButton from "../../assets/img/close-button.svg";
 import ImgFavButton from "../../assets/img/fav-button.svg";
 import ImageWomam from "../../assets/img/woman110.png";
 import API from "../../API";
+import { useDispatch, useSelector } from "react-redux";
 
 const api = new API();
 
 export default function Preview({ selectedImageId, setShowPreview }) {
+  const dispatch = useDispatch();
   const [image, setImage] = useState({});
+  const [showFavourite, setShowFavourite] = useState(true);
 
   useEffect(() => {
     api
@@ -25,6 +29,11 @@ export default function Preview({ selectedImageId, setShowPreview }) {
     setShowPreview(false);
   };
 
+  const clickFavourite = (image) => {
+    setShowFavourite(false);
+    dispatch(addFavourite(image));
+  };
+
   return (
     <section class="preview">
       <div class="preview-inner">
@@ -33,7 +42,13 @@ export default function Preview({ selectedImageId, setShowPreview }) {
         </div>
 
         <div class="main-image">
-          <img class="fav-btn" src={ImgFavButton} />
+          {showFavourite && (
+            <img
+              class="fav-btn"
+              src={ImgFavButton}
+              onClick={() => clickFavourite(image)}
+            />
+          )}
           <img class="preview-img" src={image.image} />
           <div class="image-description">
             <p class="tag-title">{image.name}</p>
