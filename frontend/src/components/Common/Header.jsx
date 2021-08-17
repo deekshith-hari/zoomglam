@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { Route, Switch } from "react-router";
+import Favourites from "../../containers/Favourites";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getTags } from "../../reducks/tags/selectors";
 import { fetchTags } from "../../reducks/tags/operations";
@@ -16,8 +19,13 @@ export default function Header() {
     <div>
       <header>
         <div class="header">
-          <p>Zoomglam</p>
-          <input type="button" value="Favourites" class="favourites" />
+          <a href="/" class="a-logo">
+            <p>Zoomglam</p>
+          </a>
+
+          <a href="/favourites">
+            <input type="submit" value="Favourites" class="favourites" />
+          </a>
         </div>
       </header>
       <nav class="navigation">
