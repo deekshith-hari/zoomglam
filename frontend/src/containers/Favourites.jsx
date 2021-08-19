@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
-import { fetchFromLocalStorage } from "../reducks/favourites/operations";
+import {
+  deleteFavourite,
+  fetchFromLocalStorage,
+} from "../reducks/favourites/operations";
 import { useDispatch, useSelector } from "react-redux";
 
 import ImgSearch from "../assets/img/icon-search.svg";
 import ImgFavourites from "../assets/img/favourities-image1.png";
 import { getFavourites } from "../reducks/favourites/selectors";
+// import { deleteFavourite } from "../reducks/favourites/operations";
 
 export default function Favourites() {
   const dispatch = useDispatch();
@@ -41,11 +45,15 @@ export default function Favourites() {
                     value="Download"
                     class="fav-download-btn"
                   />
-                  <input type="submit" value="Remove" class="fav-remove-btn" />
+                  <input
+                    type="submit"
+                    value="Remove"
+                    class="fav-remove-btn"
+                    onClick={() => dispatch(deleteFavourite(favourite.id))}
+                  />
                 </div>
               </div>
             ))}
-          ;
         </div>
       </section>
     </div>

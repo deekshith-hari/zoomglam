@@ -13,13 +13,14 @@ export default function SearchList() {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const parsed = queryString.parse(window.location.search);
-  const [search, setSearch] = useState(null);
   const images = getImages(selector);
   const hasNext = getHasNext(selector);
   const [showPreview, setShowPreview] = useState(false);
   const [selectedImageId, setSelectedImageId] = useState(null);
 
+  const [search, setSearch] = useState(null);
   const [page, setPage] = useState(1);
+  const [tagId, setTagId] = useState(null);
   console.log(parsed);
 
   useEffect(() => {
@@ -29,13 +30,19 @@ export default function SearchList() {
     if (parsed.search != undefined) {
       setSearch(parsed.search);
     }
+    if (parsed.tagId != undefined) {
+      setTagId(parsed.tagId);
+    }
   }, []);
 
   useEffect(() => {
     if (search) {
       dispatch(fetchImages(page, search));
     }
-  }, [page, search]);
+    if (tagId) {
+      dispatch(fetchImages(page, tagId));
+    }
+  }, [page, search, tagId]);
 
   const clickShowMore = () => {
     if (page) {

@@ -180,28 +180,12 @@ Section1 Main Visual
 /**********************
 Section2 IMAGE SECTION
 ***********************/
-
-.section2 ul.image-fav-btn {
+.section2 .image-list li .fav-btn {
+  width: 4%;
   position: absolute;
-  margin: 30px auto;
-  width: 90%;
-  padding-left: 0;
-  left: 5%;
+  margin: 0;
+  padding-left: 24%;
 }
-
-.section2 .image-fav-btn li {
-  float: left;
-  width: 31%;
-  margin: 2% 1%;
-  border-radius: 3%;
-  list-style: none;
-}
-
-.section2 .image-fav-btn li img {
-  width: 20%;
-  height: 220px;
-}
-
 .section2 ul.image-list {
   margin: 30px auto;
   width: 90%;
@@ -216,7 +200,7 @@ Section2 IMAGE SECTION
   list-style: none;
 }
 
-.section2 .image-list li img {
+.section2 .image-list li .list-image {
   width: 100%;
   height: 220px;
   object-fit: cover;
@@ -291,6 +275,10 @@ footer {
   .section2 .image-list li {
     width: 100%;
   }
+  .section2 .image-list li .fav-btn {
+    width: 20%;
+    padding-left: 70%;
+  }
 }
 
 /************************************************************************************************
@@ -315,8 +303,8 @@ Preview
 
 .preview .preview-inner .main-image {
   position: absolute;
-  top: 100px;
-  left: 100px;
+  top: 17%;
+  left: 6%;
   width: 50%;
 }
 
@@ -327,14 +315,14 @@ Preview
 .preview .preview-inner .main-image .fav-btn {
   position: absolute;
   width: 10%;
-  left: 80%;
-  top: 50px;
+  top: 5%;
+  right: 5%;
 }
 
 .preview .preview-inner .close-button {
   margin: 0;
   position: absolute;
-  top: 3%;
+  top: 5%;
   right: 5%;
   width: 100px;
 }
@@ -373,41 +361,43 @@ Preview
   position: absolute;
   width: 30%;
   margin: 0;
-  right: 10%;
+  right: 7%;
   background-color: white;
-  top: 18%;
-  height: 42%;
+  top: 17%;
+  height: 45%;
 }
 
 .preview .preview-inner .download-preview p {
+  position: absolute;
   font-size: 1.5em;
   text-align: center;
   width: 100%;
   margin: 0 auto;
   font-family: Helvetica;
+  top: 5%;
 }
 
 .preview .preview-inner .download-preview .img-preview {
-  display: block;
+  position: absolute;
   width: 75%;
   margin: 0 auto;
-  left: 10%;
-  height: 75%;
+  left: 13%;
+  top: 15%;
 }
 
 .preview .preview-inner .download-preview .checker {
   position: absolute;
-  display: block;
   width: 79%;
   margin: 0 auto;
-  left: 10.5%;
-  height: 76%;
+  left: 11%;
+  z-index: 100;
+  top: 15%;
 }
 
 .preview .preview-inner .download-preview input {
   position: absolute;
   width: 50%;
-  bottom: 3%;
+  bottom: 6%;
   left: 23%;
   padding: 10px 5px;
   background-color: #484646;
@@ -418,6 +408,12 @@ Preview
 }
 
 @media screen and (max-width: 800px) {
+  .preview .preview-inner .main-image {
+    position: absolute;
+    top: 20%;
+    width: 98%;
+    left: 1%;
+  }
   .preview .preview-inner .download-preview {
     position: absolute;
     width: 80%;

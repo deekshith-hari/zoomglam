@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchImages } from "../reducks/images/operations";
 import { getImages, getHasNext } from "../reducks/images/selectors";
+import { getFavourites } from "../reducks/favourites/selectors";
+import ImgFavButton from "../assets/img/fav-button.svg";
+import {
+  addFavourite,
+  fetchFromLocalStorage,
+} from "../reducks/favourites/operations";
 
 import ImgBackground from "../assets/img/section1-bg.png";
 import ImgSearch from "../assets/img/icon-search.svg";
@@ -16,8 +22,10 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [showPreview, setShowPreview] = useState(false);
   const [selectedImageId, setSelectedImageId] = useState(null);
+  const favourites = getFavourites(selector);
 
   useEffect(() => {
+    dispatch(fetchFromLocalStorage());
     dispatch(fetchImages(page));
     setPage(page + 1);
   }, []);
@@ -30,6 +38,10 @@ const Home = () => {
   const clickShowMore = () => {
     dispatch(fetchImages(page));
     setPage(page + 1);
+  };
+
+  const clickFavourite = (image) => {
+    dispatch(addFavourite(image));
   };
 
   return (
@@ -62,8 +74,22 @@ const Home = () => {
       <section class="section2">
         <ul class="image-list">
           {images.map((image) => (
-            <li key={image.id} onClick={() => clickImage(image.id)}>
-              <img src={image.image} alt="" />
+            <li key={image.id}>
+              {favourites.filter(
+                (favoriteImage) => image.id == favoriteImage.id
+              ).length === 0 && (
+                <img
+                  className="fav-btn"
+                  src={ImgFavButton}
+                  onClick={() => clickFavourite(image)}
+                />
+              )}
+              <img
+                className="list-image"
+                src={image.image}
+                alt=""
+                onClick={() => clickImage(image.id)}
+              />
             </li>
           ))}
         </ul>
