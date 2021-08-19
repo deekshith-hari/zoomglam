@@ -199,6 +199,18 @@ Section2 IMAGE SECTION
   border-radius: 3%;
   list-style: none;
 }
+.section2 ul.image-list {
+  margin: 30px auto;
+  width: 90%;
+  padding-left: 0;
+}
+.section2 .image-list li {
+  float: left;
+  width: 31%;
+  margin: 2% 1%;
+  border-radius: 3%;
+  list-style: none;
+}
 
 .section2 .image-list li .list-image {
   width: 100%;

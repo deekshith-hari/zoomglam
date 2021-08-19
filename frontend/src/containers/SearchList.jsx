@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ImgSearch from "../assets/img/icon-search.svg";
+import ImgFavButton from "../assets/img/fav-button.svg";
 
 import { fetchImages } from "../reducks/images/operations";
 import { getImages, getHasNext } from "../reducks/images/selectors";
+import { addFavourite } from "../reducks/favourites/operations";
+import { getFavourites } from "../reducks/favourites/selectors";
 
 import queryString from "query-string";
 import Preview from "../components/Common/Preview";
@@ -21,6 +24,7 @@ export default function SearchList() {
   const [search, setSearch] = useState(null);
   const [page, setPage] = useState(1);
   const [tagId, setTagId] = useState(null);
+  const favourites = getFavourites(selector);
   console.log(parsed);
 
   useEffect(() => {
@@ -34,6 +38,10 @@ export default function SearchList() {
       setTagId(parsed.tagId);
     }
   }, []);
+
+  const clickFavourite = (image) => {
+    dispatch(addFavourite(image));
+  };
 
   useEffect(() => {
     if (search) {
@@ -81,7 +89,18 @@ export default function SearchList() {
         <ul class="image-list">
           {images.map((image) => (
             <li key={image.id}>
+              {favourites.filter(
+                (favoriteImage) => image.id == favoriteImage.id
+              ).length === 0 && (
+                <img
+                  className="fav-btn"
+                  src={ImgFavButton}
+                  onClick={() => clickFavourite(image)}
+                />
+              )}
+
               <img
+                className="list-image"
                 src={image.image}
                 alt=""
                 onClick={() => clickImage(image.id)}
