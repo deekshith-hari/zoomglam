@@ -6,7 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import ImgSearch from "../assets/img/icon-search.svg";
-import ImgFavourites from "../assets/img/favourities-image1.png";
+import { saveAs } from "file-saver";
 import { getFavourites } from "../reducks/favourites/selectors";
 // import { deleteFavourite } from "../reducks/favourites/operations";
 
@@ -45,6 +45,7 @@ export default function Favourites() {
                     value="Download"
                     class="fav-download-btn"
                   />
+
                   <input
                     type="submit"
                     value="Remove"
