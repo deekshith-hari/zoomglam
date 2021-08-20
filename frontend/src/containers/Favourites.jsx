@@ -6,7 +6,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import ImgSearch from "../assets/img/icon-search.svg";
-import { saveAs } from "file-saver";
 import { getFavourites } from "../reducks/favourites/selectors";
 // import { deleteFavourite } from "../reducks/favourites/operations";
 
