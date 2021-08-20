@@ -34,8 +34,8 @@ export default function SearchList() {
     if (parsed.search != undefined) {
       setSearch(parsed.search);
     }
-    if (parsed.tagId != undefined) {
-      setTagId(parsed.tagId);
+    if (parsed.tag_id != undefined) {
+      setTagId(parsed.tag_id);
     }
   }, []);
 
@@ -45,10 +45,10 @@ export default function SearchList() {
 
   useEffect(() => {
     if (search) {
-      dispatch(fetchImages(page, search));
+      dispatch(fetchImages(page, search, null));
     }
     if (tagId) {
-      dispatch(fetchImages(page, tagId));
+      dispatch(fetchImages(page, null, tagId));
     }
   }, [page, search, tagId]);
 

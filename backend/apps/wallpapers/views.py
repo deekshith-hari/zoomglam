@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, filters
 from .serializers import ImageSerializer, TagSerializer
 from .models import Image, Tag
+from .paginations import NoLimitedResultPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
 class ImageList(generics.ListAPIView):
@@ -19,3 +20,4 @@ class ImageDetail(generics.RetrieveAPIView):
 class TagList(generics.ListAPIView):
     queryset = Tag.objects.order_by('-created_at')
     serializer_class = TagSerializer
+    pagination_class = NoLimitedResultPagination
