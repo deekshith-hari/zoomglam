@@ -23,8 +23,10 @@ export default function Favourites() {
       <section class="section2">
         <div class="search-box">
           <div class="search-box-inner">
-            <input type="text" placeholder="Office Space" />
-            <img src={ImgSearch} alt="" />
+            <form action="/search" method="get">
+              <input type="text" name="search" placeholder="Office Space" />
+              <img src={ImgSearch} alt="" />
+            </form>
           </div>
         </div>
         <div class="search-result">

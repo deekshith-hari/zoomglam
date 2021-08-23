@@ -24,6 +24,7 @@ export default function SearchList() {
   const [search, setSearch] = useState(null);
   const [page, setPage] = useState(1);
   const [tagId, setTagId] = useState(null);
+  const [tagName, setTagName] = useState(null);
   const favourites = getFavourites(selector);
   console.log(parsed);
 
@@ -81,10 +82,14 @@ export default function SearchList() {
           </div>
         </div>
         <div class="search-result">
-          <p>Search </p>
-          <p>
-            <b>"{search}"</b>
-          </p>
+          {search && (
+            <>
+              <p>Search </p>
+              <p>
+                <b>"{search}"</b>
+              </p>
+            </>
+          )}
         </div>
         <ul class="image-list">
           {images.map((image) => (
