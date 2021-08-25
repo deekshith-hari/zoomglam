@@ -51,8 +51,9 @@ export default function Preview({ selectedImageId, setShowPreview }) {
         </div>
 
         <div class="main-image">
-          {favourites.filter((favoriteImage) => image.id == favoriteImage.id)
-            .length === 0 && (
+          {Object.values(favourites).filter(
+            (favoriteImage) => image.id == favoriteImage.id
+          ).length === 0 && (
             <img
               class="fav-btn"
               src={ImgFavButton}

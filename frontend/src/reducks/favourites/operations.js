@@ -11,7 +11,7 @@ const FAVOURITES_KEY = "FAVOURITES_KEY";
 export const fetchFromLocalStorage = () => {
   return async (dispatch) => {
     let favouritsJSON = localStorage.getItem(FAVOURITES_KEY);
-    let favourites = {};
+    let favourites = [];
     if (favouritsJSON) {
       favourites = JSON.parse(favouritsJSON);
     }

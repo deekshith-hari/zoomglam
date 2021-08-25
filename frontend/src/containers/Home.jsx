@@ -75,7 +75,7 @@ const Home = () => {
         <ul class="image-list">
           {images.map((image) => (
             <li key={image.id}>
-              {favourites.filter(
+              {Object.values(favourites).filter(
                 (favoriteImage) => image.id == favoriteImage.id
               ).length === 0 && (
                 <img
