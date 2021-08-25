@@ -41,11 +41,13 @@ export default function Favourites() {
                   <img src={favourite.image} alt="" />
                 </div>
                 <div class="fav-btn">
-                  <input
-                    type="submit"
-                    value="Download"
-                    class="fav-download-btn"
-                  />
+                  <a href={favourite.image} target="_blank">
+                    <input
+                      type="submit"
+                      value="Download"
+                      class="fav-download-btn"
+                    />
+                  </a>
 
                   <input
                     type="submit"
